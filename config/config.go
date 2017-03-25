@@ -11,3 +11,7 @@ type Config struct {
 	CLOSE       string `json:"close"`
 	WHITESPACES string `json:"whitespaces"`
 }
+
+func (c *Config) Ops() []string {
+	return []string{c.NEXT, c.PREV, c.INC, c.DEC, c.READ, c.WRITE, c.OPEN, c.CLOSE}
+}

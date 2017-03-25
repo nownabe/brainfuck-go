@@ -33,8 +33,7 @@ func length(s string) int {
 func getMaxLength(c config.Config) int {
 	max := 0
 
-	ops := []string{c.NEXT, c.PREV, c.INC, c.DEC, c.READ, c.WRITE, c.OPEN, c.CLOSE}
-
+	ops := c.Ops()
 	for _, op := range ops {
 		if l := length(op); max < l {
 			max = l
