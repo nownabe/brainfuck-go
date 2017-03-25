@@ -1,8 +1,7 @@
 package lexer
 
 import (
-	//"fmt"
-	"reflect"
+	"strings"
 	"unicode/utf8"
 
 	"github.com/nownabe/brainfuck-go/config"
@@ -34,10 +33,10 @@ func length(s string) int {
 func getMaxLength(c config.Config) int {
 	max := 0
 
-	v := reflect.ValueOf(c)
+	ops := []string{c.NEXT, c.PREV, c.INC, c.DEC, c.READ, c.WRITE, c.OPEN, c.CLOSE}
 
-	for i := 0; i < v.NumField(); i++ {
-		if l := length(v.Field(i).String()); max < l {
+	for _, op := range ops {
+		if l := length(op); max < l {
 			max = l
 		}
 	}
@@ -46,7 +45,7 @@ func getMaxLength(c config.Config) int {
 }
 
 func (l *Lexer) Next() token.Token {
-	l.skipSpace()
+	l.skipWhitespace()
 	buf := ""
 	for {
 		if l.isEOF() {
@@ -77,18 +76,22 @@ func (l *Lexer) Next() token.Token {
 	}
 }
 
-func (l *Lexer) skipSpace() {
+func (l *Lexer) skipWhitespace() {
 	for {
 		if l.isEOF() {
 			return
 		}
-		switch l.input[l.position] {
-		case " ", "\t", "\n", "\r":
+
+		if l.isMatchWhitespace(l.input[l.position]) {
 			l.position++
-		default:
+		} else {
 			return
 		}
 	}
+}
+
+func (l *Lexer) isMatchWhitespace(c string) (matched bool) {
+	return strings.Contains(l.config.WHITESPACES, c)
 }
 
 func (l *Lexer) readChar() string {

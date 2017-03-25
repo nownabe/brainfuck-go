@@ -20,14 +20,15 @@ func main() {
 	if confPath == "" {
 		// Standard brainfuck
 		conf = config.Config{
-			NEXT:  ">",
-			PREV:  "<",
-			INC:   "+",
-			DEC:   "-",
-			READ:  ",",
-			WRITE: ".",
-			OPEN:  "[",
-			CLOSE: "]",
+			NEXT:        ">",
+			PREV:        "<",
+			INC:         "+",
+			DEC:         "-",
+			READ:        ",",
+			WRITE:       ".",
+			OPEN:        "[",
+			CLOSE:       "]",
+			WHITESPACES: " \t\n\r",
 		}
 	} else {
 		// Customize brainfuck
