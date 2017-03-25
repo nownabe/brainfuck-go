@@ -117,7 +117,7 @@ func (e *Evaluator) Eval() {
 		case token.CLOSE:
 			e.close()
 		case token.EOF:
-			fmt.Println("\n\n(END)")
+			fmt.Fprintln(os.Stderr, "\n\n(END)")
 			goto FINISH
 		default:
 			fmt.Println(t)
