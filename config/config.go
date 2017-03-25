@@ -1,12 +1,12 @@
 package config
 
 type Config struct {
-	NEXT  string
-	PREV  string
-	INC   string
-	DEC   string
-	READ  string
-	WRITE string
-	OPEN  string
-	CLOSE string
+	NEXT  string `json:"next"`
+	PREV  string `json:"prev"`
+	INC   string `json:"inc"`
+	DEC   string `json:"dec"`
+	READ  string `json:"read"`
+	WRITE string `json:"write"`
+	OPEN  string `json:"open"`
+	CLOSE string `json:"close"`
 }
