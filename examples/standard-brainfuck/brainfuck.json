@@ -1,0 +1,11 @@
+{
+  "next": ">",
+  "prev": "<",
+  "inc": "+",
+  "dec": "-",
+  "read": ",",
+  "write": ".",
+  "open": "[",
+  "close": "]",
+  "whitespaces": " \t\r\n"
+}
