@@ -1,0 +1,11 @@
+{
+  "next": "apple",
+  "prev": "pinapple",
+  "inc": "I",
+  "dec": "have",
+  "read": "pen",
+  "write": "Uh",
+  "open": "[",
+  "close": "]",
+  "whitespaces": " \t\r\n"
+}
