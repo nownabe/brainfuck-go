@@ -1,6 +1,7 @@
 package lexer
 
 import (
+	//"fmt"
 	"reflect"
 	"unicode/utf8"
 
@@ -45,9 +46,10 @@ func getMaxLength(c config.Config) int {
 }
 
 func (l *Lexer) Next() token.Token {
+	l.skipSpace()
 	buf := ""
 	for {
-		if l.position >= l.length {
+		if l.isEOF() {
 			return token.EOF
 		}
 		if length(buf) >= l.max {
@@ -75,8 +77,26 @@ func (l *Lexer) Next() token.Token {
 	}
 }
 
+func (l *Lexer) skipSpace() {
+	for {
+		if l.isEOF() {
+			return
+		}
+		switch l.input[l.position] {
+		case " ", "\t", "\n", "\r":
+			l.position++
+		default:
+			return
+		}
+	}
+}
+
 func (l *Lexer) readChar() string {
 	pos := l.position
 	l.position++
 	return l.input[pos]
+}
+
+func (l *Lexer) isEOF() bool {
+	return l.position >= l.length
 }
